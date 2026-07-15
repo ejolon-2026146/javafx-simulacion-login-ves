@@ -4,10 +4,12 @@
  */
 package com.eliaquimjolon.controller;
 
+import com.eliaquimjolon.view.BienvenidaView;
 import com.eliaquimjolon.view.LoginView;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
@@ -68,6 +70,29 @@ public class SceneManager {
             }    
          
         
+        }
+        
+        
+        public void ventanaBienvenida(){
+        try {
+          this.escenarioSecundaria = new Stage();
+          this.escenarioSecundaria.initStyle(StageStyle.TRANSPARENT);
+          this.escenarioSecundaria.initModality(Modality.APPLICATION_MODAL);
+          BienvenidaView bienvenida = new BienvenidaView();
+          this.escenaPrincipal = new Scene(bienvenida, 15, 25);
+          this.escenarioSecundaria.setScene(escenaPrincipal);
+          this.escenarioSecundaria.sizeToScene();
+          this.escenarioSecundaria.showAndWait();
+          
+        } catch (NullPointerException objetoNulo) {
+            JOptionPane.showMessageDialog(null, "Error de objeto nulo: Ventana Login");
+            objetoNulo .printStackTrace();//mostrar todo el camino del error
+            
+        }catch(Exception errorPadre){
+            JOptionPane.showMessageDialog(null, "Error padre: Ventana Login");
+            errorPadre.printStackTrace();
+            }    
+         
         }
  
     public static SceneManager getInstanciaSceneManager() {

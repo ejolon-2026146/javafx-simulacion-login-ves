@@ -10,6 +10,7 @@ package com.eliaquimjolon.model;
  */
 public enum Rol {
     ADMIN,
+    USER,
     
     
 }

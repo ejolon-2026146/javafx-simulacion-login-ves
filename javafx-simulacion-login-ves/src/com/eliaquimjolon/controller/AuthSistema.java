@@ -13,36 +13,32 @@ import com.eliaquimjolon.model.Usuario;
  * @author informatica
  */
 public class AuthSistema {
-    private static ArrayList <Usuario> ListaUsuarios = new ArrayList<>();
 
-    
-    public AuthSistema(){
+    private static ArrayList<Usuario> ListaUsuarios = new ArrayList<>();
+
+    public AuthSistema() {
         Usuario usuarioAdmin = new Usuario("admin", "admin", "admin", Rol.ADMIN);
-        Usuario usuarioUser = new Usuario("daniela", "123", "dani", Rol.USER);
-        Usuario usuarioYo = new Usuario("kim", "1234", "Eliaquim Elzias Jolon Tzul", Rol.ADMIN);
-        
+        Usuario usuarioUser = new Usuario("dani", "123", "Daniela Melendez", Rol.USER);
+        Usuario usuarioYo = new Usuario("kim", "1234", "Eliaquim Tzul", Rol.ADMIN);
+
         ListaUsuarios.add(usuarioAdmin);
         ListaUsuarios.add(usuarioUser);
         ListaUsuarios.add(usuarioYo);
-        
+
     }
-    
-    public Usuario login (String nombreUsuario, String clave){
-    
-        for(Usuario UsuarioBuscado : ListaUsuarios){
-            if(UsuarioBuscado.getNombreUsuario().equals(nombreUsuario) 
-                  &&  UsuarioBuscado.getPassword().equals(clave))
-            return UsuarioBuscado;
+
+    public Usuario login(String nombreUsuario, String clave) {
+
+        for (Usuario UsuarioBuscado : ListaUsuarios) {
+            if (UsuarioBuscado.getNombreUsuario().equals(nombreUsuario)
+                    && UsuarioBuscado.getPassword().equals(clave)) {
+                return UsuarioBuscado;
+            }
         }
-        
+
         return null;
     }
-    
-        
-        
-    
-    
-    
+
     public static ArrayList<Usuario> getListaUsuarios() {
         return ListaUsuarios;
     }

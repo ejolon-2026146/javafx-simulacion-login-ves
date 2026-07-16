@@ -14,9 +14,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
-
 public class SceneManager {
- 
+
     private Stage escenarioPrincipal;
 
     private Stage escenarioSecundaria;
@@ -24,16 +23,16 @@ public class SceneManager {
     private Scene escenaPrincipal;
 
     private static SceneManager instanciaSceneManager;
- 
+
     private SceneManager() {
 
     }
- 
+
     public void cambiarEscena(Pane panel, int ancho, int alto) {
 
         try {
 
-            escenaPrincipal = new Scene(panel,ancho,alto);
+            escenaPrincipal = new Scene(panel, ancho, alto);
 
             this.escenarioPrincipal.setScene(escenaPrincipal);
 
@@ -43,58 +42,63 @@ public class SceneManager {
 
         } catch (NullPointerException objetoNulo) {
             JOptionPane.showMessageDialog(null, "Error de objeto nulo: cambiar Escena");
-            objetoNulo .printStackTrace();//mostrar todo el camino del error
-            
-        }catch(Exception errorPadre){
+            objetoNulo.printStackTrace();//mostrar todo el camino del error
+
+        } catch (Exception errorPadre) {
             JOptionPane.showMessageDialog(null, "Error padre: Cambiar Escena");
             errorPadre.printStackTrace();
-            }    
         }
- 
-        public void ventanaLogin(){
+    }
+
+    public void ventanaLogin() {
         try {
             this.escenarioPrincipal.initStyle(StageStyle.TRANSPARENT);
             LoginView login = LoginView.getInstanciaLoginView();
             cambiarEscena(login, 450, 500);
             this.escenaPrincipal.setFill(Color.TRANSPARENT);
             new LoginController(login);
-            
-            
+
         } catch (NullPointerException objetoNulo) {
             JOptionPane.showMessageDialog(null, "Error de objeto nulo: Ventana Login");
-            objetoNulo .printStackTrace();//mostrar todo el camino del error
-            
-        }catch(Exception errorPadre){
+            objetoNulo.printStackTrace();//mostrar todo el camino del error
+
+        } catch (Exception errorPadre) {
             JOptionPane.showMessageDialog(null, "Error padre: Ventana Login");
             errorPadre.printStackTrace();
-            }    
-         
-        
         }
-        
-        
-        public void ventanaBienvenida(){
+
+    }
+
+    public void ventanaBienvenida(String nombreUsuario) {
         try {
-          this.escenarioSecundaria = new Stage();
-          this.escenarioSecundaria.initStyle(StageStyle.TRANSPARENT);
-          this.escenarioSecundaria.initModality(Modality.APPLICATION_MODAL);
-          BienvenidaView bienvenida = new BienvenidaView();
-          this.escenaPrincipal = new Scene(bienvenida, 15, 25);
-          this.escenarioSecundaria.setScene(escenaPrincipal);
-          this.escenarioSecundaria.sizeToScene();
-          this.escenarioSecundaria.showAndWait();
-          
+            this.escenarioSecundaria = new Stage();
+            this.escenarioSecundaria.initStyle(StageStyle.TRANSPARENT);
+            this.escenarioSecundaria.initModality(Modality.APPLICATION_MODAL);
+            BienvenidaView bienvenida = new BienvenidaView();
+
+            bienvenida.setNombreUsuario(nombreUsuario);
+
+            this.escenaPrincipal = new Scene(bienvenida, 350, 220);
+            this.escenaPrincipal.setFill(Color.TRANSPARENT);
+            this.escenarioSecundaria.setScene(escenaPrincipal);
+            this.escenarioSecundaria.sizeToScene();
+
+            bienvenida.getBtnCerrar().setOnMouseClicked(evento -> {
+                this.escenarioSecundaria.close();
+            });
+
+            this.escenarioSecundaria.showAndWait();
+
         } catch (NullPointerException objetoNulo) {
             JOptionPane.showMessageDialog(null, "Error de objeto nulo: Ventana Login");
-            objetoNulo .printStackTrace();//mostrar todo el camino del error
-            
-        }catch(Exception errorPadre){
+            objetoNulo.printStackTrace();
+
+        } catch (Exception errorPadre) {
             JOptionPane.showMessageDialog(null, "Error padre: Ventana Login");
             errorPadre.printStackTrace();
-            }    
-         
         }
- 
+    }
+
     public static SceneManager getInstanciaSceneManager() {
 
         if (instanciaSceneManager == null) {
@@ -106,50 +110,47 @@ public class SceneManager {
         return instanciaSceneManager;
 
     }
- 
+
     public static void setInstanciaSceneManager(SceneManager instanciaSceneManager) {
 
         SceneManager.instanciaSceneManager = instanciaSceneManager;
 
     }
- 
+
     public Stage getEscenarioPrincipal() {
 
         return escenarioPrincipal;
 
     }
- 
+
     public void setEscenarioPrincipal(Stage escenarioPrincipal) {
 
         this.escenarioPrincipal = escenarioPrincipal;
 
     }
- 
+
     public Stage getEscenariSecundaria() {
 
         return escenarioSecundaria;
 
     }
- 
+
     public void setEscenariSecundaria(Stage escenariSecundaria) {
 
         this.escenarioSecundaria = escenariSecundaria;
 
     }
- 
+
     public Scene getEscenaPrincipal() {
 
         return escenaPrincipal;
 
     }
- 
+
     public void setEscenaPrincipal(Scene escenaPrincipal) {
 
         this.escenaPrincipal = escenaPrincipal;
 
     }
- 
-}
 
- 
-    
+}

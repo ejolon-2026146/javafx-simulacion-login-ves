@@ -27,25 +27,26 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class LoginView extends BorderPane {
-    private static LoginView  instanciaLoginView;
+
+    private static LoginView instanciaLoginView;
     private Button btnCerrarVentana;
-    private Label lblTituloVentana; 
+    private Label lblTituloVentana;
     private HBox barraDeOpciones;
-    
+
     private VBox cajaVertical;
     private Label lblNombreUsuario;
     private TextField txtNombreUsuario;
     private Label lblClave;
     private PasswordField pwdClave;
-    
+
     private GridPane formulario;
     private ImageView imgLogoLogin;
     private Button btnIniciarSesion;
-    
+
     private String RUTA_ESTILOS = "/com/eliaquimjolon/styles/";
-    
-    private LoginView(){
-        this.getStylesheets().add(RUTA_ESTILOS+"LoginStyles.css");
+
+    private LoginView() {
+        this.getStylesheets().add(RUTA_ESTILOS + "LoginStyles.css");
         this.setPadding(new Insets(15));
         this.setBorder(new Border(
                 new BorderStroke(Paint.valueOf("2D6180"), // color del borde
@@ -53,58 +54,59 @@ public class LoginView extends BorderPane {
                         new CornerRadii(15), // pixeles del redondeado
                         new BorderWidths(10)) // Ancho del borde
         ));
-        
+
         this.setBackground(new Background(
-                new BackgroundFill(Color.AQUAMARINE , //color del fondo
+                new BackgroundFill(Color.AQUAMARINE, //color del fondo
                         new CornerRadii(25), //pixeles del redondeado
-                        Insets.EMPTY)   //espaciado del fondo
+                        Insets.EMPTY) //espaciado del fondo
         ));
-        
+
         barraDeOpciones = new HBox(25);
-        
+
         btnCerrarVentana = new Button("X");
         lblTituloVentana = new Label("JAVAFX - SIMULACION LOGIN");
-        
+
         barraDeOpciones.getChildren().addAll(
                 btnCerrarVentana,
                 lblTituloVentana
         );
         this.setTop(barraDeOpciones);
-        
+
         //Objetos del Formulario
         cajaVertical = new VBox();
-        
+
         formulario = new GridPane();
-        
+
         lblNombreUsuario = new Label("Ingrese su Nombre Usuario");
         txtNombreUsuario = new TextField();
-        
+
         lblClave = new Label("Ingrese su Contraseña");
         pwdClave = new PasswordField();
-        
+
         formulario.add(lblNombreUsuario, 0, 0);
         formulario.add(txtNombreUsuario, 1, 0);
-        
+
         formulario.add(lblClave, 0, 1);
         formulario.add(pwdClave, 1, 1);
-        
-        imgLogoLogin = new ImageView( new ImageController().getImagelogin("logo"));
+
+        imgLogoLogin = new ImageView(new ImageController().getImagelogin("logo"));
         imgLogoLogin.setFitWidth(300);
         imgLogoLogin.setFitHeight(300);
         imgLogoLogin.setCache(true);
-        
+
         cajaVertical.setAlignment(Pos.CENTER);
-        
+
         btnIniciarSesion = new Button("Iniciar Sesion");
-        
+
         cajaVertical.getChildren().addAll(imgLogoLogin, formulario, btnIniciarSesion);
-        
+
         this.setCenter(cajaVertical);
     }
 
     public static LoginView getInstanciaLoginView() {
-        if( instanciaLoginView == null )
+        if (instanciaLoginView == null) {
             instanciaLoginView = new LoginView();
+        }
         return instanciaLoginView;
     }
 
@@ -199,5 +201,5 @@ public class LoginView extends BorderPane {
     public void setBtnIniciarSesion(Button btnIniciarSesion) {
         this.btnIniciarSesion = btnIniciarSesion;
     }
-    
+
 }

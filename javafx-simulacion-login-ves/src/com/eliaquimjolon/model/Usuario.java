@@ -9,6 +9,7 @@ package com.eliaquimjolon.model;
  * @author informatica
  */
 public class Usuario {
+
     private String nombreUsuario;
     private String password;
     private String nombreCompleto;
@@ -55,6 +56,5 @@ public class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
-    
+
 }

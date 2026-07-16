@@ -9,12 +9,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 TextField.empty{
     -fx-border-color : orange;
-    -fx-border-width: 5px;  
+    -fx-border-width: 5px;
 }
 
 PasswordField.empty{
     -fx-border-color : orange;
-    -fx-border-width: 5px;  
+    -fx-border-width: 5px;
 }
 
 TextField.error{
@@ -24,5 +24,5 @@ TextField.error{
 
 PasswordField.error{
     -fx-border-color : red;
-    -fx-border-width: 2px;  
+    -fx-border-width: 2px;
 }
